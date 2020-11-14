@@ -25,8 +25,7 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
       - name: Deploy to staging
-        uses: ./ # Uses an action in the root directory
-        id: heroku-jar-deploy
+        uses: ./.github/actions/heroku-jar-deploy
         with:
           heroku-api-key: ${{ secrets.HEROKU_API_KEY }}
           jdk: 11
@@ -35,8 +34,7 @@ jobs:
       - name: Component Tests
         run: 'echo -n "Main page..."; test "$(curl --fail --silent https://infinite-caverns-43687.herokuapp.com/ | jq -r ''.tip'')" == "Do It Yourself!" && echo "passed." || echo "failed. Bad main page"'
       - name: Deploy to production
-        uses: ./ # Uses an action in the root directory
-        id: heroku-jar-deploy
+        uses: ./.github/actions/heroku-jar-deploy
         with:
           heroku-api-key: ${{ secrets.HEROKU_API_KEY }}
           jdk: 11

@@ -1,5 +1,7 @@
 FROM node:12.19.0-alpine3.9
 
-RUN npm install -g heroku && heroku plugins:install java
+RUN npm install -g heroku
 
-ENTRYPOINT ["/usr/local/bin/heroku"]
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

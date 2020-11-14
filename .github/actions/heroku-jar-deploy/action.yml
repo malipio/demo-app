@@ -21,11 +21,10 @@ runs:
     HEROKU_API_KEY: ${{ inputs.heroku-api-key }}
   args:
     # ie. heroku jar:deploy --jdk 11 --jar build/libs/demo-0.0.1-SNAPSHOT.jar --app infinite-caverns-43687
-    - plugins
-#    - jar:deploy
-#    - --jdk
-#    - ${{ inputs.jdk }}
-#    - --jar
-#    - ${{ inputs.jar-path }}
-#    - --app
-#    - ${{ inputs.app-name }}
+    - jar:deploy
+    - --jdk
+    - ${{ inputs.jdk }}
+    - --jar
+    - ${{ inputs.jar-path }}
+    - --app
+    - ${{ inputs.app-name }}

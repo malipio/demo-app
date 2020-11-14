@@ -14,9 +14,6 @@ inputs:
   app-name:
     description: ''
     required: true
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -24,10 +21,11 @@ runs:
     HEROKU_API_KEY: ${{ inputs.heroku-api-key }}
   args:
     # ie. heroku jar:deploy --jdk 11 --jar build/libs/demo-0.0.1-SNAPSHOT.jar --app infinite-caverns-43687
-    - jar:deploy
-    - --jdk
-    - ${{ inputs.jdk }}
-    - --jar
-    - ${{ inputs.jar-path }}
-    - --app
-    - ${{ inputs.app-name }}
+    - plugins
+#    - jar:deploy
+#    - --jdk
+#    - ${{ inputs.jdk }}
+#    - --jar
+#    - ${{ inputs.jar-path }}
+#    - --app
+#    - ${{ inputs.app-name }}

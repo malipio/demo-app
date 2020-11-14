@@ -25,6 +25,6 @@ runs:
     - --jdk
     - ${{ inputs.jdk }}
     - --jar
-    - /github/workspace/${{ inputs.jar-path }}
+    - ${{ inputs.jar-path }}
     - --app
     - ${{ inputs.app-name }}

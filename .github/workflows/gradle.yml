@@ -3,12 +3,10 @@
 
 name: Minimal Java CI with Gradle
 
+
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
+    branches: [master]
 jobs:
   build:
 
@@ -24,9 +22,13 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-    - name: Heroku Action
-      uses: CDNievas/heroku-action@v1.0
+    - name: XUnit Viewer
+      id: xunit-viewer
+      uses: AutoModality/action-xunit-viewer@v1  
       with:
-        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-        heroku_email: pmalinow@gmail.com
-        heroku_app_name: infinite-caverns-43687 
+        results: build/test-results/test  
+    - name: Attach the report
+      uses: actions/upload-artifact@v1
+      with:
+        name: ${{ steps.xunit-viewer.outputs.report-name }}
+        path: ${{ steps.xunit-viewer.outputs.report-dir }}
